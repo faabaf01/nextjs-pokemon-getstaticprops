@@ -5,6 +5,7 @@ import theme from "../styles/theme";
 //hydrate our components with data that are already pre-fetched from the server
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { useRef } from "react";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = useRef(new QueryClient());
@@ -13,7 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient.current}>
         <Hydrate state={pageProps.dehydratedState}>
           <Component {...pageProps} />
-      </Hydrate>
+        </Hydrate>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ChakraProvider>
   );

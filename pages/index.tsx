@@ -52,7 +52,7 @@ const endpoint = "https://graphql-pokeapi.graphcdn.app/";
 
 async function fetchPokemons() {
   const data = await request(endpoint, GET_ALL_POKEMONS, {
-    limit: 10,
+    limit: 14,
     offset: 0,
   });
   return data;
@@ -61,8 +61,9 @@ async function fetchPokemons() {
 export default function Home() {
   //this query will fetch from the cache
   const { data, isLoading, isError } = useQuery("pokemons", fetchPokemons);
-  // console.log(data);
+  console.log(isLoading);
   return (
+    // <>{JSON.stringify(data)}</>
     <Box w="100%" h="100%" bgGradient="linear(blue.100 25%, purple.100 50%)">
       <Head>
         <title>Pokemon List</title>

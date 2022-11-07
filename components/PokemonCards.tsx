@@ -18,7 +18,6 @@ interface IPokemons {
 
 function PokemonCards(data: IPokemons) {
   return (
-    // <>{JSON.stringify(data)}</>
     <SimpleGrid minChildWidth="160px" spacing="40px" textAlign="center" m={10}>
       {data?.pokemons.pokemons.results.map(
         (
@@ -29,7 +28,7 @@ function PokemonCards(data: IPokemons) {
           i: number
         ) => (
           <div key={i + 1}>
-            <Link href={`/pokemon/${i + 1}`}>
+            <Link href={`/pokemon/${p.name}`}>
               <Box
                 borderWidth="4px"
                 borderRadius="lg"
@@ -67,6 +66,7 @@ function PokemonCards(data: IPokemons) {
       )}
     </SimpleGrid>
   );
+
 }
 
 export default PokemonCards;
