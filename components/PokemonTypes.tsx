@@ -1,16 +1,11 @@
-import {
-  Box,
-  Circle,
-  Flex,
-  Heading,
-  HStack,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import { PokemonType } from "../graphql/SpecificPokemon";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 
 interface Props {
-  pokeTypes: PokemonType[];
+  pokeTypes: [
+    {
+      type: { name: string };
+    }
+  ];
 }
 
 export default function PokemonTypes({ pokeTypes }: Props) {
@@ -23,7 +18,7 @@ export default function PokemonTypes({ pokeTypes }: Props) {
       </Box>
       <Flex justify="center">
         <Stack direction="row" paddingBlock={10} minWidth={7} spacing={"4px"}>
-          {pokeTypes.map((p: PokemonType, i: number) => (
+          {pokeTypes.map((p, i: number) => (
             <Box
               key={i}
               bg="orange.300"

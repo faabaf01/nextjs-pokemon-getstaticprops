@@ -1,8 +1,11 @@
-import { Box, Flex, Heading, SimpleGrid } from "@chakra-ui/react";
-import { PokemonMove } from "../graphql/SpecificPokemon";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 
 interface Props {
-  pokeMoves: PokemonMove[];
+  pokeMoves: [
+    {
+      move: { name: string };
+    }
+  ];
 }
 
 export default function PokemonMoves({ pokeMoves }: Props) {
@@ -20,7 +23,7 @@ export default function PokemonMoves({ pokeMoves }: Props) {
         paddingBlock={10}
         paddingInline={20}
       >
-        {pokeMoves.map((p: PokemonMove, i: number) => (
+        {pokeMoves.map((p, i: number) => (
           <Box
             key={i}
             bg="yellow.200"

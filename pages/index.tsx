@@ -1,41 +1,13 @@
 //Next js server side rendering
-import {
-  Badge,
-  Box,
-  Container,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  HStack,
-  Image,
-  SimpleGrid,
-  Stack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import request from "graphql-request";
 import Head from "next/head";
-import Link from "next/link";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PokemonCards from "../components/PokemonCards";
 import ShowError from "../components/ShowError";
-import ShowLoading from "../components/ShowLoading";
 import { GET_ALL_POKEMONS } from "../graphql/AllPokemons";
-
-interface IPokemons {
-  pokemons: {
-    count: number;
-    results: [
-      {
-        name: string;
-        image: string;
-      }
-    ];
-  };
-}
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
@@ -48,9 +20,8 @@ export async function getServerSideProps() {
   };
 }
 
-const endpoint = "https://graphql-pokeapi.graphcdn.app/";
-
 async function fetchPokemons() {
+  const endpoint = "https://graphql-pokeapi.graphcdn.app/";
   const data = await request(endpoint, GET_ALL_POKEMONS, {
     limit: 14,
     offset: 0,
@@ -60,10 +31,9 @@ async function fetchPokemons() {
 
 export default function Home() {
   //this query will fetch from the cache
-  const { data, isLoading, isError } = useQuery("pokemons", fetchPokemons);
-  console.log(isLoading);
+  const { data, isError } = useQuery("pokemons", fetchPokemons);
+
   return (
-    // <>{JSON.stringify(data)}</>
     <Box w="100%" h="100%" bgGradient="linear(blue.100 25%, purple.100 50%)">
       <Head>
         <title>Pokemon List</title>
@@ -79,7 +49,7 @@ export default function Home() {
       </Heading>
 
       <>{isError && <ShowError />}</>
-      {isLoading ? <ShowLoading /> : <PokemonCards pokemons={data} />}
+      {data && <PokemonCards pokemons={data} />}
       <Footer />
     </Box>
   );

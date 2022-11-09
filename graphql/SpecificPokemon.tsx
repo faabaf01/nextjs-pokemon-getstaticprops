@@ -18,25 +18,3 @@ export const GET_DETAIL_POKEMON = gql`
     }
   }
 `;
-
-export interface IPoke {
-  name: string;
-  id: number;
-}
-
-export interface PokemonType {
-  type: { name: string };
-}
-
-export interface PokemonMove {
-  move: { name: string };
-}
-
-export interface PokemonDetailQuery {
-  pokemon: {
-    id: number;
-    name: string;
-    types: PokemonType[];
-    moves: PokemonMove[];
-  };
-}

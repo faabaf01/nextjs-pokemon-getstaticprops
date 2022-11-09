@@ -7,10 +7,12 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { IPoke } from "../graphql/SpecificPokemon";
 
 interface Props {
-  props: IPoke;
+  props: {
+    name: string;
+    id: number;
+  };
 }
 
 export default function PokemonProfile({ props }: Props) {

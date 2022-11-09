@@ -3,9 +3,7 @@ import { gql } from "graphql-request";
 export const GET_ALL_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
     pokemons(limit: $limit, offset: $offset) {
-      count
       results {
-        id
         name
         image
       }
@@ -13,19 +11,15 @@ export const GET_ALL_POKEMONS = gql`
   }
 `;
 
-export interface Pokemon {
-  id: number;
-  name: string;
-  image: string;
-}
-
-export interface PokemonQuery {
+export interface AllPokemonsQuery {
   pokemons: {
-    count: number;
-    results: [
-      {
-        name: Pokemon[];
-      }
-    ];
+    pokemons: {
+      results: [
+        {
+          name: string;
+          image: string;
+        }
+      ];
+    };
   };
 }
