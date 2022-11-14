@@ -9,7 +9,7 @@ import PokemonCards from "../components/PokemonCards";
 import ShowError from "../components/ShowError";
 import { GET_ALL_POKEMONS } from "../graphql/AllPokemons";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery("pokemons", fetchPokemons);
 
@@ -34,7 +34,7 @@ export default function Home() {
   const { data, isError } = useQuery("pokemons", fetchPokemons);
 
   return (
-    <Box w="100%" h="100%" bgGradient="linear(blue.100 25%, purple.100 50%)">
+    <Box w="100%" h="100%" bgGradient="linear(green.100 25%, orange.100 50%)">
       <Head>
         <title>Pokemon List</title>
       </Head>

@@ -21,7 +21,7 @@ export default function PokemonTypes({ pokeTypes }: Props) {
           {pokeTypes.map((p, i: number) => (
             <Box
               key={i}
-              bg="orange.300"
+              bg="green.300"
               width="120px"
               rounded="10"
               textAlign={"center"}

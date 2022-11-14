@@ -11,9 +11,11 @@ import Link from "next/link";
 import Head from "next/head";
 import PokemonProfile from "../../components/PokemonProfile";
 import PokemonMoves from "../../components/PokemonMoves";
+import Footer from "../../components/Footer";
+import { GetStaticPaths, GetStaticProps } from "next";
 
-export async function getServerSideProps(context: any) {
-  const name = context.params.name as string;
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const name = context.params?.name as string;
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["pokemon", name], () => fetchPokemon(name));
@@ -23,7 +25,14 @@ export async function getServerSideProps(context: any) {
       dehydratedState: dehydrate(queryClient),
     },
   };
-}
+};
+//fallback blocking: ui is blocked until the new page is received in the browser
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
 
 async function fetchPokemon(name: string | string[] | undefined) {
   const endpoint = "https://graphql-pokeapi.graphcdn.app/";
@@ -41,7 +50,7 @@ function Details() {
 
   return (
     <>
-      <Box w="100%" h="100%" bgGradient="linear(blue.100 25%, purple.100 50%)">
+      <Box w="100%" h="100%" bgGradient="linear(green.100 25%, orange.100 50%)">
         <Head>
           <title>{data?.pokemon.name}</title>
         </Head>
@@ -59,6 +68,7 @@ function Details() {
           </>
         )}
       </Box>
+      <Footer />
     </>
   );
 }

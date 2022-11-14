@@ -3,7 +3,7 @@ import PokemonLogo from "./PokemonLogo";
 
 export default function Header() {
   return (
-    <Box bg={"#0458a2"}>
+    <Box bg={"#408f51"}>
       <Stack align={"center"} p={5}>
         <PokemonLogo />
       </Stack>

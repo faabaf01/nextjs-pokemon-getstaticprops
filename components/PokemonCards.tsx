@@ -15,7 +15,7 @@ function PokemonCards(data: AllPokemonsQuery) {
               borderColor="honeydew"
               overflow="hidden"
               _hover={{
-                background: "blue.200",
+                background: "orange.200",
               }}
             >
               <VStack>
